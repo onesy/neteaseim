@@ -1,0 +1,21 @@
+{
+    "name": "onesy/neteaseim",
+    "description": "the netease im for dingceng",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sunyuw",
+            "email": "1587273742@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "monolog/monolog": "^2.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "NetEaseSdk\\": "NetEaseSdk"
+        }
+    }
+}
