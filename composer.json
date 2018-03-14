@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "monolog/monolog": "^2.0@dev"
+        "monolog/monolog": "^1.23@stable"
     },
     "autoload": {
         "psr-4": {
