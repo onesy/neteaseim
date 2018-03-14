@@ -325,7 +325,7 @@ class NetEaseIm
      */
     public function message_send(
             AbstractNeMessage $message, bool $antispam =false,
-            string $antispamCustom = [], array $option = [], array $pushcontent = [],
+            array $antispamCustom = [], array $option = [], array $pushcontent = [],
             array $payload = [], array $ext = [], array $forcepushlist = [], 
             string $forcepushcontent = '', bool $forcepushall = false,
             string $bid = '', int $useYidun = 0):NetEaseImResponse
@@ -488,7 +488,7 @@ class NetEaseIm
      */
     public function recall_message(
             string $deleteMsgId, int $timetag, int $type, 
-            string $from, string $to, string $msg = '', string $ignoreTime = 0) :NetEaseImResponse
+            string $from, string $to, string $msg = '', string $ignoreTime = '') :NetEaseImResponse
     {
         $this->checkSumBuilder();
         $data['deleteMsgId'] = $deleteMsgId;
