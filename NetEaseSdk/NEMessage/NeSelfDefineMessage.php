@@ -8,7 +8,7 @@ class NeSelfDefineMessage extends AbstractNeMessage
     
     private $type = 0;
     
-    public function toString() {
+    public function toString():string {
         return json_encode($this->body);
     }
     
