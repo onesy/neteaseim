@@ -1,7 +1,7 @@
 <?php
 namespace NetEaseSdk\NEMessage;
 
-interface NEMessage
+interface NeMessage
 {
     public function toString():string;
     

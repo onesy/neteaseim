@@ -1,7 +1,7 @@
 <?php
 namespace NetEaseSdk\NEMessage;
 
-abstract class AbstractNeMessage implements NEMessage
+abstract class AbstractNeMessage implements NeMessage
 {
     public $from;
     
