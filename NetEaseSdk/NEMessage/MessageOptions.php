@@ -5,6 +5,9 @@ class MessageOptions
 {
     public $options = [];
     
+    public function __construct() {
+        $this->set_badge(true);
+    }
     public function toString():string
     {
         return json_encode($this->options);

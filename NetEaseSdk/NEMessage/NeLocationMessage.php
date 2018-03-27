@@ -8,7 +8,7 @@ final class NeLocationMessage extends AbstractNeMessage
     
     private $type = 4;
     
-    public function toString() {
+    public function toString():string {
         return json_encode($this->body);
     }
     

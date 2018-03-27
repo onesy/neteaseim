@@ -8,7 +8,7 @@ final class NeFIleMessage extends AbstractNeMessage
     
     private $type = 6;
     
-    public function toString() {
+    public function toString(): string {
         return json_encode($this->body);
     }
     

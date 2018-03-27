@@ -8,7 +8,7 @@ final class NeVoiceMessage extends AbstractNeMessage
     
     private $type = 2;
     
-    public function toString() {
+    public function toString():String {
         return json_encode($this->body);
     }
     

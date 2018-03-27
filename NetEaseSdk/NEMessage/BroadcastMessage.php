@@ -21,7 +21,7 @@ class BroadcastMessage
         return $this->body[$name];
     }
     
-    public function toString()
+    public function toString():string
     {
         return json_encode($this->body);
     }

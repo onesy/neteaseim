@@ -8,7 +8,7 @@ final class NePicMessage extends AbstractNeMessage
     
     private $type = 1;
     
-    public function toString() {
+    public function toString():string {
         return json_encode($this->body);
     }
     
