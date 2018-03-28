@@ -1,6 +1,8 @@
 <?php
 namespace NetEaseSdk;
 
+use GuzzleHttp\Client;
+
 class HttpRequest {
     
     private $timeout = 60;
@@ -44,6 +46,22 @@ class HttpRequest {
         $headers = $this->generate_sending_header();
         $url = $this->url;
         $data = http_build_query($this->data);
+        ###guzzle
+        $client = new Client();
+        $res = $client->request("POST", $url,[
+            'headers' => $this->header,
+            'form_params' => $this->data,
+            'connect_timeout' => $this->timeout,
+            'verify' => false,
+        ]);
+        $status_code = $res->getStatusCode();
+        if ($status_code != 200) {
+            $status_rtn = $res->getStatusCode();
+        } else {
+            $status_rtn = json_decode($res->getBody()->getContents(), true);
+        }
+        return $status_rtn;
+        #####################################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
