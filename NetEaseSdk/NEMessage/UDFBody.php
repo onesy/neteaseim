@@ -13,7 +13,7 @@ final class UDFBody implements NeComposeInterface
     
     public function getType():int
     {
-        return AbstractNeMessage::TYPE_FILE;
+        return AbstractNeMessage::TYPE_UDF;
     }
     
     public function __set($name, $value)
