@@ -20,6 +20,10 @@ class NeSelfDefineMessage extends AbstractNeMessage
     public function __set($name, $value) {
         $this->body[$name] = $value;
     }
+    
+    public function __get($name) {
+        return $this->body[$name];
+    }
 
 }
 

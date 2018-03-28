@@ -4,6 +4,7 @@ namespace NetEaseSdk;
 use \NetEaseSdk\NEException\NEParamsCheckException;
 use NetEaseSdk\NetEaseImResponse;
 use NetEaseSdk\NEMessage\AbstractNeMessage;
+use NetEaseSdk\NEMessage\NeMessageShell;
 
 class NetEaseIm
 {
@@ -299,56 +300,13 @@ class NetEaseIm
         });
     }
     ##############################################message 
-    /**
-     * 0 表示文本消息,
-     * 1 表示图片，
-     * 2 表示语音，
-     * 3 表示视频，
-     * 4 表示地理位置信息，
-     * 6 表示文件，
-     * 100 自定义消息类型
-     * 
-     * @param AbstractNeMessage $message
-     * @param string $body
-     * @param bool $antispam
-     * @param string $antispamCustom
-     * @param array $option
-     * @param array $pushcontent
-     * @param array $payload
-     * @param array $ext
-     * @param array $forcepushlist
-     * @param string $forcepushcontent
-     * @param bool $forcepushall
-     * @param string $bid
-     * @param int $useYidun
-     * @return NetEaseImResponse
-     */
-    public function message_send(
-            AbstractNeMessage $message, bool $antispam =false,
-            array $antispamCustom = [], array $option = [], array $pushcontent = [],
-            array $payload = [], array $ext = [], array $forcepushlist = [], 
-            string $forcepushcontent = '', bool $forcepushall = false,
-            string $bid = '', int $useYidun = 0):NetEaseImResponse
+
+    
+    public function message_send(NeMessageShell $nms):NetEaseImResponse
     {
         $this->checkSumBuilder();
-        $data['from'] = $message->from;
-        $data['ope'] = $message->ope;
-        $data['to'] = $message->to;
-        $data['type'] = $message->getType();
-        $data['body'] = $message->toString();
-        if (!empty($antispam)) $data['antispam'] = 'true';
-        if (!empty($antispamCustom)) $data['antispamCustom'] = json_encode($antispamCustom);
-        if (!empty($option)) $data['option'] = $message->get_options();
-        if (!empty($pushcontent)) $data['pushcontent'] = json_encode($pushcontent);
-        if (!empty($payload)) $data['payload'] = json_encode($payload);
-        if (!empty($ext)) $data['ext'] = json_encode($ext);
-        if (!empty($forcepushlist)) $data['forcepushlist'] = json_encode($forcepushlist);
-        if (!empty($forcepushcontent)) $data['forcepushcontent'] = $forcepushcontent;
-        if (!empty($forcepushall)) $data['forcepushall'] = 'true';
-        if (!empty($bid)) $data['bid'] = $bid;
-        if (!empty($useYidun)) $data['useYidun'] = $useYidun;
         $this->http_request->set_url(NEConstants::send_msg);
-        $this->http_request->set_data($data);
+        $this->http_request->set_data($nms->data());
         return new NetEaseImResponse(function(){
             return $this->http_request->https_post();
         });

@@ -3,6 +3,15 @@ namespace NetEaseSdk\NEMessage;
 
 abstract class AbstractNeMessage implements NeMessage
 {
+    const TYPE_TXT = 0;
+    const TYPE_PIC = 1;
+    const TYPE_VOICE = 2;
+    const TYPE_VEDIO = 3;
+    const TYPE_LOCATION = 4;
+    const TYPE_FILE = 6;
+    const TYPE_UDF = 100;
+    
+    
     public $from;
     
     public $ope;
