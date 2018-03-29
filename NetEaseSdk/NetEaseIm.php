@@ -2,6 +2,8 @@
 namespace NetEaseSdk;
 
 use \NetEaseSdk\NEException\NEParamsCheckException;
+use NetEaseSdk\NEMessage\NeAttachMessageShell;
+use NetEaseSdk\NEMessage\NeMessage;
 use NetEaseSdk\NetEaseImResponse;
 use NetEaseSdk\NEMessage\AbstractNeMessage;
 use NetEaseSdk\NEMessage\NeMessageShell;
@@ -373,6 +375,16 @@ class NetEaseIm
         $data['option'] = $message->get_options();
         $this->http_request->set_url(NEConstants::self_define_sys_notify);
         $this->http_request->set_data($data);
+        return new NetEaseImResponse(function(){
+            return $this->http_request->https_post();
+        });
+    }
+
+    public function send_attach_message_refactory(NeAttachMessageShell $attachmsg)
+    {
+        $this->checkSumBuilder();
+        $this->http_request->set_url(NEConstants::self_define_sys_notify);
+        $this->http_request->set_data($attachmsg->data());
         return new NetEaseImResponse(function(){
             return $this->http_request->https_post();
         });
